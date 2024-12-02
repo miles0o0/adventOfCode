@@ -2,7 +2,6 @@ package one
 
 import (
 	"bufio"
-	"log"
 	"math"
 	"os"
 	"slices"
@@ -16,7 +15,7 @@ func OneMain() int {
 
 	// square and root to remove negative
 	// tally up difference
-	var total float64 = 0
+	var total float64
 	for i := 0; i < len(left); i++ {
 		value1 := left[i] - right[i]
 		var value2 float64 = float64(value1 * value1)
@@ -57,10 +56,8 @@ func OneSec() int {
 
 // both functions need the file into an array first needs sorted
 func intiilisation() ([]float64, []float64) {
-	file, err := os.Open("2024/data/dayOne.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
+
+	file, _ := os.Open("2024/data/dayOne.txt")
 	defer file.Close()
 
 	var left []float64
@@ -70,11 +67,8 @@ func intiilisation() ([]float64, []float64) {
 	for scanner.Scan() {
 		nums := strings.Split(scanner.Text(), "   ")
 		// convert to float 64 because squaring and rooting to remove negatives
-		value1, err1 := strconv.ParseFloat(nums[0], 64)
-		value2, err2 := strconv.ParseFloat(nums[1], 64)
-		if err1 != nil || err2 != nil {
-			log.Fatal(err)
-		}
+		value1, _ := strconv.ParseFloat(nums[0], 64)
+		value2, _ := strconv.ParseFloat(nums[1], 64)
 		left = append(left, value1)
 		right = append(right, value2)
 	}
