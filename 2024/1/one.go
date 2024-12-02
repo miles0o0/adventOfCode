@@ -32,26 +32,26 @@ func OneMain() int {
 func OneSec() int {
 	left, right := intiilisation()
 
-	var total int = 0
-	dic := make(map[int]int)
+	dic := make(map[float64]float64)
 	// maybe some optimisations because its sorted? cba
 	for i := 0; i < len(right); i++ {
-		_, exists := dic[int(right[i])]
+		_, exists := dic[right[i]]
 		if exists {
-			dic[int(right[i])] = dic[int(right[i])] + 1
+			dic[right[i]] = dic[right[i]] + 1
 		} else {
-			dic[int(right[i])] = 1
+			dic[right[i]] = 1
 		}
 	}
 
+	var total float64
 	for i := 0; i < len(left); i++ {
-		_, exists := dic[int(left[i])]
+		_, exists := dic[left[i]]
 		if exists {
-			total += int(left[i]) * dic[int(left[i])]
+			total += left[i] * dic[left[i]]
 		}
 	}
 
-	return total
+	return int(total)
 }
 
 // both functions need the file into an array first needs sorted
