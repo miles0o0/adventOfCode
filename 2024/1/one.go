@@ -9,9 +9,7 @@ import (
 )
 
 func OneMain() int {
-
 	left, right := intiilisation()
-
 	// negative to positive
 	// tally up difference
 	var total int
@@ -22,7 +20,6 @@ func OneMain() int {
 		}
 		total += value
 	}
-
 	return int(total)
 }
 
@@ -50,16 +47,13 @@ func OneSec() int {
 			total += left[i] * dic[left[i]]
 		}
 	}
-
 	return total
 }
 
 // both functions need the file into an array first needs sorted
 func intiilisation() ([]int, []int) {
-
 	file, _ := os.Open("2024/data/dayOne.txt")
 	defer file.Close()
-
 	var left []int
 	var right []int
 
@@ -71,10 +65,8 @@ func intiilisation() ([]int, []int) {
 		left = append(left, value1)
 		right = append(right, value2)
 	}
-
 	//sort :)
 	slices.Sort(left)
 	slices.Sort(right)
-
 	return left, right
 }
