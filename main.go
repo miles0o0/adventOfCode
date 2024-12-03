@@ -3,12 +3,19 @@ package main
 import (
 	"log"
 
-	two "github.com/miles0o0/adventOfCode/2024/2"
+	three "github.com/miles0o0/adventOfCode/2024/3"
 )
 
 func main() {
+
+	// day 1
 	// log.Println(one.OneMain())
 	// log.Println(one.OneSec())
-	log.Println(two.TwoMain())
-	log.Println(two.TwoSec())
+
+	// day 2
+	// log.Println(two.TwoMain())
+	// log.Println(two.TwoSec())
+
+	// day 3
+	log.Panicln(three.ThreeMain())
 }
