@@ -17,5 +17,6 @@ func main() {
 	// log.Println(two.TwoSec())
 
 	// day 3
-	log.Panicln(three.ThreeMain())
+	log.Println(three.PartOne())
+	log.Println(three.PartTwo())
 }
