@@ -43,6 +43,9 @@ func wordSearch(grid [][]rune) int {
 	}
 	for x, row := range grid {
 		for y := range row {
+			if string(grid[x][y]) != "X" {
+				continue
+			}
 			for _, dir := range dirs {
 				if omniDirectionalSearch(x, y, dir[0], dir[1]) {
 					total += 1

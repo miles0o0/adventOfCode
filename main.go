@@ -22,4 +22,5 @@ func main() {
 
 	// day 4
 	log.Println(four.PartOne())
+	log.Println(four.PartTwo())
 }

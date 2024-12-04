@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func OneMain() int {
+func PartOne() int {
 	left, right := intiilisation()
 	// negative to positive
 	// tally up difference
@@ -26,7 +26,7 @@ func OneMain() int {
 // gets right list count
 // multiply left value with right count
 // return total product of the latter
-func OneSec() int {
+func PartTwo() int {
 	left, right := intiilisation()
 
 	dic := make(map[int]int)
