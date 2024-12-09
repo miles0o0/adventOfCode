@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	seven "github.com/miles0o0/adventOfCode/2024/7"
+	nine "github.com/miles0o0/adventOfCode/2024/9"
 )
 
 func main() {
@@ -31,10 +31,14 @@ func main() {
 	// log.Println(six.PartTwo())
 
 	// day 7
-	log.Println(seven.PartOne())
-	log.Println(seven.PartTwo())
+	// log.Println(seven.PartOne())
+	// log.Println(seven.PartTwo())
 
 	// day 8
 	// log.Println(eight.PartOne())
 	// log.Println(eight.PartTwo())
+
+	// day 9
+	log.Println(nine.PartOne())
+	log.Println(nine.PartTwo())
 }
