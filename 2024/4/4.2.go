@@ -2,6 +2,7 @@ package four
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 )
 
@@ -13,74 +14,65 @@ func PartTwo() int {
 	for scanner.Scan() {
 		grid = append(grid, []rune(scanner.Text()))
 	}
+	// grid := [][]rune{
+	// 	[]rune("MMMSXXMASM"), // Each string converted to a slice of runes
+	// 	[]rune("MSAMXMSMSA"),
+	// 	[]rune("AMXSXMAAMM"),
+	// 	[]rune("MSAMASMSMX"),
+	// 	[]rune("XMASAMXAMM"),
+	// 	[]rune("XXAMMXXAMA"),
+	// 	[]rune("SMSMSASXSS"),
+	// 	[]rune("SAXAMASAAA"),
+	// 	[]rune("MAMMMXMMMM"),
+	// 	[]rune("MXMXAXMASX"),
+	// }
+
 	return wordSearch2(grid)
 }
 
 func wordSearch2(grid [][]rune) int {
-	const word = "MS"
 	total := 0
-	length := len(word)
 	dirs := [][2]int{
-		{1, 1},   // up right
-		{-1, 1},  // up left
-		{-1, -1}, // down left
-		{1, -1},  // down right
-
+		{-1, 1},  // Top-right
+		{-1, -1}, // Top-left
+		{1, -1},  // Bottom-left
+		{1, 1},   // Bottom-right
 	}
-	// joke name don't take this all so seriously
-	// searches for xmas starting with x
-	omniDirectionalSearch := func(x, y, dx, dy int) rune {
-		for i := 0; i < length; i++ {
-			nx, ny := x+dx, y+dy
-			if nx < 0 || ny < 0 || nx >= len(grid) || ny >= len(grid[0]) || grid[nx][ny] != rune(word[i]) {
-				return rune(word[i])
+	checkXPattern := func(x, y int) string {
+		var result []rune
+		for _, dir := range dirs {
+			nx, ny := x+dir[0], y+dir[1]
+			if nx >= 0 && ny >= 0 && nx < len(grid) && ny < len(grid[0]) {
+				result = append(result, grid[nx][ny])
+			} else {
+				result = append(result, ' ')
 			}
 		}
-		return rune('X')
+		return string(result)
+	}
+	hasTwoMsAndTwoSs := func(letters []rune) bool {
+		countM, countS := 0, 0
+		for _, letter := range letters {
+			if letter == 'M' {
+				countM++
+			} else if letter == 'S' {
+				countS++
+			}
+		}
+		return countM == 2 && countS == 2
 	}
 	for x, row := range grid {
-		for y := range row {
-			if string(grid[x][y]) != "A" {
+		for y, cell := range row {
+			if cell != 'A' {
 				continue
 			}
-			var letters []rune
-			for _, dir := range dirs {
-				letter := omniDirectionalSearch(x, y, dir[0], dir[1])
-				if string(letter) != "X" {
-					letters = append(letters, letter)
-				}
+			letters := checkXPattern(x, y)
+			fmt.Printf("At (%d, %d), letters: %s\n", x, y, letters)
+			if letters == "MSMS" || letters == "SMSM" || !hasTwoMsAndTwoSs([]rune(letters)) {
+				continue
 			}
-			if !isEqual(letters, []rune{'M', 'S', 'M', 'S'}) &&
-				!isEqual(letters, []rune{'S', 'M', 'S', 'M'}) &&
-				countRune(letters, 'M') == 2 &&
-				countRune(letters, 'S') == 2 &&
-				len(letters) == 4 {
-				total += 1
-				// log.Print(string(letters))
-			}
+			total++
 		}
 	}
 	return total
-}
-
-func countRune(letters []rune, r rune) int {
-	count := 0
-	for _, letter := range letters {
-		if letter == r {
-			count++
-		}
-	}
-	return count
-}
-
-func isEqual(a, b []rune) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
 }
