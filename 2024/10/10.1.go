@@ -63,12 +63,8 @@ func findTrailHeads(grid [][]int, x int, y int, heads int, start int, firstCall 
 		return heads
 	}
 	if grid[y][x] == 9 {
-		if grid[y][x] == 9 {
-			key := fmt.Sprintf("%d,%d", x, y)
-			trailTracks[key] = true
-			return heads + 1
-		}
-
+		key := fmt.Sprintf("%d,%d", x, y)
+		trailTracks[key] = true
 		return heads + 1
 	}
 	for _, dir := range dirs {
