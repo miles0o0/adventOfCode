@@ -49,6 +49,6 @@ func main() {
 	// 	log.Println(ten.PartTwo())
 
 	// day 11
-	log.Println(eleven.PartOne())
+	log.Println("number of stones: ", eleven.PartOne())
 	//log.Println(eleven.PartTwo())
 }
