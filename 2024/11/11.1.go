@@ -3,7 +3,6 @@ package eleven
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"math"
 	"os"
 	"strconv"
@@ -38,9 +37,6 @@ func convertToIntList(stones string) []int {
 // If the stone is engraved with a number that has an even number of digits, it is replaced by two stones. The left half of the digits are engraved on the new left stone, and the right half of the digits are engraved on the new right stone. (The new numbers don't keep extra leading zeroes: 1000 would become stones 10 and 0.)
 // If none of the other rules apply, the stone is replaced by a new stone; the old stone's number multiplied by 2024 is engraved on the new stone.
 func simBlink(stones []int, depth int, stoneIndex map[string]int) int {
-	if depth >= 45 {
-		log.Printf("Depth: %d, Stones: %v\n", depth, stones)
-	}
 
 	if depth == 0 {
 		return len(stones)
