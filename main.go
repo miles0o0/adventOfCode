@@ -53,4 +53,5 @@ func main() {
 
 	// day 12
 	log.Println(twelve.PartOne())
+	log.Println(twelve.PartTwo())
 }

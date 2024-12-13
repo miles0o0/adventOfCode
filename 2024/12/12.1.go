@@ -3,7 +3,6 @@ package twelve
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 )
@@ -87,7 +86,6 @@ func fenceCost(regions [][]string, dirs [][2]int) int {
 
 	// Calculate total cost
 	for key, p := range perimeter {
-		log.Printf("Region %s: area = %d, Perimeter = %d", key, area[key], p)
 		total += p * area[key]
 	}
 	return total
